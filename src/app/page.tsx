@@ -1,13 +1,10 @@
 import { Section } from "@/components/Section";
 import { google } from 'googleapis'
 import { getAllProblems } from "@/service/admin/read";
-import { addPassage } from "@/service/admin/read";
 
 export const revalidate = 60;
 
 async function getData() {
-
-
 
 	const data = getAllProblems('no')
 
@@ -28,7 +25,7 @@ async function App() {
 
 
 	return (
-		<Section dataa={data} title="yes"/>
+		<Section problems={data} title="yes"/>
 	);
 };
 

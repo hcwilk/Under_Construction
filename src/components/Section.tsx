@@ -36,17 +36,15 @@ const ScrollItem: React.FC<IScrollItemProps> = ({ item, onClick }) => {
 interface SectionProps {
 	title: string;
 	children?: any;
-	dataa?: any;
+	problems?: any;
 }
 
-export const Section: React.FC<SectionProps> = ({ children, title, dataa }) => {
-
-	console.log('front end?',dataa)
+export const Section: React.FC<SectionProps> = ({ children, title, problems }) => {
 
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 
-	console.log(dataa)
+	console.log(problems)
 
 
 	const toggleDropdown = () => setDropdownIsOpen(!dropdownIsOpen);
