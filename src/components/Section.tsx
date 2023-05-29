@@ -99,8 +99,8 @@ export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 			<div className='flex h-screen items-center' onClick={() => { setShowModal(false) }}>
 				<Modal showModal={showModal} setShowModal={setShowModal}>
 					 <div className="bg-white rounded-lg overflow-auto w-full " onClick={e => e.stopPropagation()}>
-						{problems.map((item: any) => (
-							<div className='h-[40px] w-[100px] text-center' onClick={() => { setShowModal(false) }}>
+						{problems.map((item: any, index: any) => (
+							<div className='h-[40px] w-[100px] text-center' onClick={() => { setSelectedProblem(problems[index]) }}>
 								{item.date}
 							</div>
 						))}
