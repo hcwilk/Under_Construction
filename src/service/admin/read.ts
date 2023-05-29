@@ -6,13 +6,13 @@ export const getAllProblems = async (date:any) => {
 }
 
 
-export const addPassage = async (date:any, problem: any) => {
+export const addPassage = async (date:any, passage: any, questions: any) => {
 	console.log('trying to add passage')
 	const new_doc = firestore.collection('Days').doc(date)
 
 	const data = {
-        date: date,
-        problem: problem,
+        passage: passage,
+		questions: questions
     };
 
     await new_doc.set(data)
