@@ -17,16 +17,7 @@ interface IScrollItemProps {
 	item: IData;
 	onClick: () => void;
 }
-const data: IData[] = Array.from({ length: 30 }).map((_, i) => ({
-	id: `${i + 1}`,
-	date: `2023-05-${String(i + 1).padStart(2, '0')}`,
-	passage: sampleText,
-	problems: Array.from({ length: 10 }).map((_, j) => `Problem ${j + 1} for passage ${i + 1}: 
-		A) Option 1 
-		B) Option 2 
-		C) Option 3 
-		D) Option 4`),
-}));
+
 
 
 
@@ -52,9 +43,11 @@ export const Section: React.FC<SectionProps> = ({ children, title, dataa }) => {
 
 	console.log('front end?',dataa)
 
-	const [selectedItem, setSelectedItem] = useState<IData>(data[27]); // Assume today is 2023-05-28
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
+
+	console.log(dataa)
+
 
 	const toggleDropdown = () => setDropdownIsOpen(!dropdownIsOpen);
 	return (
@@ -62,13 +55,18 @@ export const Section: React.FC<SectionProps> = ({ children, title, dataa }) => {
 		<Nav toggleDropdown={toggleDropdown} dropdownIsOpen={dropdownIsOpen}  setShowModal={setShowModal}/>
 		
 			 {/* <Passage selectedItem={selectedItem}/> */}
+
+			
+					{/* <div>
+						<h2 className="text-lg font-bold mb-4">Questions</h2>
+						{selectedItem.problems.map((problem, index) => (
+							<p key={index} className="mb-2">{problem}</p>
+						))}
+					</div>   */}
+		
 			 <>
-			 	{
-				dataa.values.map((item:any, index:any) => (
-				<>
-					{item}
-				</>
-				))}
+		
+
 
 			 </>
 
@@ -77,11 +75,7 @@ export const Section: React.FC<SectionProps> = ({ children, title, dataa }) => {
 			<div className='flex h-screen items-center' onClick={() => { setShowModal(false) }}>
 				<Modal showModal={showModal} setShowModal={setShowModal}>
 					 <div className="bg-white rounded-lg overflow-auto w-full " onClick={e => e.stopPropagation()}>
-						<div className="flex overflow-x-scroll hide-scrollbar">
-							{data.map((item, index) => (
-								<ScrollItem key={index} item={item} onClick={() => { setSelectedItem(item); setShowModal(false); }} />
-							))}
-						</div>
+						
 					</div> 
 				</Modal>
 				
