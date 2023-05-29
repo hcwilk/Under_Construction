@@ -12,7 +12,7 @@ async function getData() {
 async function App() {
 	const data = await getData()
 	return (
-		<Section problems={data} title="yes"/>
+		<Section problems={data}/>
 	);
 };
 

@@ -4,6 +4,7 @@ import { sampleText } from '@/data/sample';
 import { Modal } from '@/components/Modal';
 import { Nav } from '@/components/Nav';
 import { Passage } from '@/components/Passage';
+import Link from 'next/link';
 
 
 interface IData {
@@ -34,15 +35,32 @@ const ScrollItem: React.FC<IScrollItemProps> = ({ item, onClick }) => {
 
 
 interface SectionProps {
-	title: string;
 	children?: any;
 	problems?: any;
 }
 
-export const Section: React.FC<SectionProps> = ({ children, title, problems }) => {
+interface Question {
+	question: string;
+	answer: string;
+	option1: string
+	option2: string
+	option3: string
+	option4: string
+}
+
+interface Problem {
+	date: string;
+	passage: string;
+	questions: Question[];
+}
+
+export const Section: React.FC<SectionProps> = ({ children, problems }) => {
+
+	console.log(problems)
 
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
+	const [selectedProblem, setSelectedProblem] = useState<Problem>(problems[0]);
 
 	console.log(problems)
 
@@ -51,29 +69,40 @@ export const Section: React.FC<SectionProps> = ({ children, title, problems }) =
 	return (
 		<>
 		<Nav toggleDropdown={toggleDropdown} dropdownIsOpen={dropdownIsOpen}  setShowModal={setShowModal}/>
-		
-			 {/* <Passage selectedItem={selectedItem}/> */}
-
+	
 			
-					{/* <div>
+		<div className="container mx-auto p-4 sm:p-6 lg:p-8">
+				<h2 className="text-xl font-bold mb-4 text-center">{selectedProblem.date}</h2>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					{/* Here you render the passage */}
+					<div>
+						<h2 className="text-lg font-bold mb-4 bg-yellow-200">Passage</h2>
+						{selectedProblem.passage}					
+					</div>
+
+					<div>
 						<h2 className="text-lg font-bold mb-4">Questions</h2>
-						{selectedItem.problems.map((problem, index) => (
-							<p key={index} className="mb-2">{problem}</p>
+						{selectedProblem.questions.map((question, index) => (
+							<div key={index}>
+								<h3 className="mb-2">{question.question}</h3>
+							</div>
 						))}
-					</div>   */}
-		
-			 <>
+					</div> 
+				</div>
+			</div>
 		
 
-
-			 </>
 
 
 
 			<div className='flex h-screen items-center' onClick={() => { setShowModal(false) }}>
 				<Modal showModal={showModal} setShowModal={setShowModal}>
 					 <div className="bg-white rounded-lg overflow-auto w-full " onClick={e => e.stopPropagation()}>
-						
+						{problems.map((item: any) => (
+							<div className='h-[40px] w-[100px] text-center' onClick={() => { setShowModal(false) }}>
+								{item.date}
+							</div>
+						))}
 					</div> 
 				</Modal>
 				
