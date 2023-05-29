@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { sampleText } from '@/app/data/sample';
+import { sampleText } from '@/data/sample';
 import { Modal } from '@/components/Modal';
 import { Nav } from '@/components/Nav';
 import { Passage } from '@/components/Passage';
