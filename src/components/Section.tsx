@@ -56,13 +56,10 @@ interface Problem {
 
 export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 
-	console.log(problems)
 
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 	const [selectedProblem, setSelectedProblem] = useState<Problem>(problems[0]);
-
-	console.log(problems)
 
 
 	const toggleDropdown = () => setDropdownIsOpen(!dropdownIsOpen);
@@ -76,15 +73,19 @@ export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					{/* Here you render the passage */}
 					<div>
-						<h2 className="text-lg font-bold mb-4 bg-yellow-200">Passage</h2>
+						<h2 className="text-lg font-bold mb-4">Passage</h2>
 						{selectedProblem.passage}					
 					</div>
 
 					<div>
 						<h2 className="text-lg font-bold mb-4">Questions</h2>
 						{selectedProblem.questions.map((question, index) => (
-							<div key={index}>
-								<h3 className="mb-2">{question.question}</h3>
+							<div key={index} className='mb-2'>
+								<h3 className="">{question.question}</h3>
+								<p className="ml-2">A) {question.option1}</p>
+								<p className="ml-2">B) {question.option2}</p>
+								<p className="ml-2">C) {question.option3}</p>
+								<p className="ml-2">D) {question.option4}</p>
 							</div>
 						))}
 					</div> 
