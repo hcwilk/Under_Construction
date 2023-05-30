@@ -60,8 +60,14 @@ export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
-	const [selectedProblem, setSelectedProblem] = useState<Problem>(problems.data[problems.index]);
 
+	// To set the user's page to the last page they were on. Doesn't totally work now because of browswer load time
+	// let initialProblemIndex = Number(localStorage.getItem('page'))
+	// const initialProblem = initialProblemIndex && problems.data[initialProblemIndex] ? problems.data[initialProblemIndex] : problems.data[problems.index];
+
+
+	const [selectedProblem, setSelectedProblem] = useState<Problem>(problems.data[problems.index]);
+		
 
 	const toggleDropdown = () => setDropdownIsOpen(!dropdownIsOpen);
 	return (
@@ -101,7 +107,7 @@ export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 				<Modal showModal={showModal} setShowModal={setShowModal}>
 					 <div className="bg-white rounded-lg overflow-auto w-full " onClick={e => e.stopPropagation()}>
 						{problems.data.map((item: any, index: any) => (
-							<div className='h-[40px] w-[100px] text-center' onClick={() => { setSelectedProblem(problems.data[index]) }}>
+							<div className='h-[40px] w-[100px] text-center' onClick={() => { setSelectedProblem(problems.data[index]); localStorage.setItem('page',index) }}>
 								{item.date}
 							</div>
 						))}
