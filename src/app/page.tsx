@@ -4,9 +4,6 @@ import { getAllProblems } from "@/service/admin/read";
 
 export const revalidate = 60;
 
-function getIndexofDayinYear(date: Date){
-
-}
 
 async function getData() {
 	let allData = await getAllProblems()

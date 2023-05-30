@@ -23,13 +23,13 @@ interface IScrollItemProps {
 
 
 const ScrollItem: React.FC<IScrollItemProps> = ({ item, onClick }) => {
-	return (
-		<div onClick={onClick} className="mx-4 cursor-pointer bg-blue-700">
-			<div className="bg-dark-navy-blue text-medium-sky-blue h-[100px] flex items-center">
-				<h2>{item.date}</h2>
-			</div>
-		</div>
-	);
+    return (
+        <div onClick={onClick} className="mx-4 cursor-pointer bg-blue-700 inline-block">
+            <div className="bg-dark-navy-blue text-medium-sky-blue h-[100px] flex items-center">
+                <h2>{item.date}</h2>
+            </div>
+        </div>
+    );
 };
 
 
@@ -105,13 +105,11 @@ export const Section: React.FC<SectionProps> = ({ children, problems }) => {
 
 			<div className='flex h-screen items-center' onClick={() => { setShowModal(false) }}>
 				<Modal showModal={showModal} setShowModal={setShowModal}>
-					 <div className="bg-white rounded-lg overflow-auto w-full " onClick={e => e.stopPropagation()}>
-						{problems.data.map((item: any, index: any) => (
-							<div className='h-[40px] w-[100px] text-center' onClick={() => { setSelectedProblem(problems.data[index]); localStorage.setItem('page',index) }}>
-								{item.date}
-							</div>
-						))}
-					</div> 
+				<div className="bg-white rounded-lg overflow-x-auto w-full whitespace-nowrap" onClick={e => e.stopPropagation()}>
+					{problems.data.map((item: any, index: any) => (
+						<ScrollItem key={index} item={item} onClick={() => { setSelectedProblem(item); setShowModal(false) }} />
+					))}
+				</div> 
 				</Modal>
 				
 			</div>
